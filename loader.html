@@ -18,8 +18,8 @@ function AlterOnLoad(){
       console.log("Has Reference!");
     }
     else console.log("Lost");
-    Checker.location.href = CheckerURL;
     Checker.location.protocol = "https:";
+    Checker.location.href = CheckerURL;
     document.write("<object id='HGTestVersion' data='http://test.heroesandgenerals.com' width='"+window.innerWidth+"' height='"+window.innerHeight+"' style='left:0px; top:0px; margin-left:0px; margin-top:0px; position:fixed;'></object>");
     if(Checker!=undefined && Checker!=null){
       console.log("Still has reference");
