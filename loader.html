@@ -41,6 +41,7 @@ function AlterOnLoad(){
 
 
 function Status(){
+  console.log("checking status");
   if(Checker!="" && Checker.closed)
     CloseWindow();
   else setTimeout(Status, 30000);
