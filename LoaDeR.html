@@ -1,0 +1,36 @@
+<object id="HGTestVersion" data='http://test.heroesandgenerals.com' style="left:0px; top:0px; margin-left:0px; margin-top:0px; position:fixed;"></object>
+<script>
+window.onload = AlterOnLoad;
+window.onunload = CloseWindow;
+
+var Row;
+var Checker = "";
+
+function AlterOnLoad(){
+  GetRowParameter();
+  Checker = window.open("https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?chk=true", "Checker", "width=400, height=200");
+  var Obj = document.getElementById("HGTestVersion");
+  Obj.width = window.innerWidth;
+  Obj.height = window.innerHeight;
+  Checker.onload = function(){Status();};
+  Status();
+}
+
+
+function Status(){
+  if(Checker!="" && Checker.closed)
+    CloseWindow();
+  else setTimeout(Status, 30000);
+}
+
+
+function CloseWindow(){
+  Checker.close();
+  window.open("https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?close="+Row, "_top");
+}
+
+
+function GetRowParameter(){
+  Row = location.search.replace("?Row=", "");
+}
+</script>

