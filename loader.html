@@ -11,23 +11,23 @@ function AlterOnLoad(){
   GetTokenParameter();
   //document.write("<object id='HGTestVersion' data='http://test.heroesandgenerals.com' style='left:0px; top:0px; margin-left:0px; margin-top:0px; position:fixed;'></object>");
   //Checker = window.open("https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?chk="+Token+"&Row="+Row, "Checker", "width=400, height=200");
-  var CheckerURL = "http://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?chk="+Token+"&Row="+Row;
-  Checker = window.open("", "Checker", "width=400, height=200");
-  if(Checker.location.href == "about:blank"){
-    if(Checker!=undefined && Checker!=null){
-      console.log("Has Reference!");
-    }
-    else console.log("Lost");
-    //Checker.location.protocol = "https:";
-    Checker.location.href = CheckerURL;
-    document.write("<object id='HGTestVersion' data='http://test.heroesandgenerals.com' width='"+window.innerWidth+"' height='"+window.innerHeight+"' style='left:0px; top:0px; margin-left:0px; margin-top:0px; position:fixed;'></object>");
-    if(Checker!=undefined && Checker!=null){
-      console.log("Still has reference");
-    }
-    else console.log("Disappeared");
-    console.log("Checker protocol = "+Checker.location.protocol);
-    Status();
+  var CheckerURL = "https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?chk="+Token+"&Row="+Row;
+  Checker = window.open(CheckerURL, "Checker", "width=400, height=200");
+  //if(Checker.location.href == "about:blank"){
+  if(Checker!=undefined && Checker!=null){
+    console.log("Has Reference!");
   }
+  else console.log("Lost");
+  //Checker.location.protocol = "https:";
+  Checker.location.href = CheckerURL;
+  document.write("<object id='HGTestVersion' data='http://test.heroesandgenerals.com' width='"+window.innerWidth+"' height='"+window.innerHeight+"' style='left:0px; top:0px; margin-left:0px; margin-top:0px; position:fixed;'></object>");
+  if(Checker!=undefined && Checker!=null){
+    console.log("Still has reference");
+  }
+  else console.log("Disappeared");
+  console.log("Checker protocol = "+Checker.location.protocol);
+  Status();
+  //}
   //var Obj = document.getElementById("HGTestVersion");
   //Obj.width = window.innerWidth;
   //Obj.height = window.innerHeight;
