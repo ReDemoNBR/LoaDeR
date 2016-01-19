@@ -1,14 +1,15 @@
-<object id="HGTestVersion" data='http://test.heroesandgenerals.com' style="left:0px; top:0px; margin-left:0px; margin-top:0px; position:fixed;"></object>
 <script>
 window.onload = AlterOnLoad;
 window.onunload = CloseWindow;
 
 var Row;
+var Token;
 var Checker = "";
 
 function AlterOnLoad(){
   GetRowParameter();
-  Checker = window.open("https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?chk=true", "Checker", "width=400, height=200");
+  GetTokenParameter();
+  Checker = window.open("https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?chk="+Token+"&Row="+Row, "Checker", "width=400, height=200");
   var Obj = document.getElementById("HGTestVersion");
   Obj.width = window.innerWidth;
   Obj.height = window.innerHeight;
@@ -31,6 +32,15 @@ function CloseWindow(){
 
 
 function GetRowParameter(){
-  Row = location.search.replace("?Row=", "");
+  var aux = location.search;
+  aux = aux.substring(0, aux.indexOf("&"));
+  Row = aux.replace("?Row=", "");
+}
+
+
+function GetTokenParameter(){
+  var aux = location.search;
+  aux = aux.substring(aux.indexOf("&"));
+  Token = aux.replace("&Token=", "");
 }
 </script>
