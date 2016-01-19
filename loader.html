@@ -10,7 +10,12 @@ function AlterOnLoad(){
   GetRowParameter();
   GetTokenParameter();
   //document.write("<object id='HGTestVersion' data='http://test.heroesandgenerals.com' style='left:0px; top:0px; margin-left:0px; margin-top:0px; position:fixed;'></object>");
-  Checker = window.open("https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?chk="+Token+"&Row="+Row, "Checker", "width=400, height=200");
+  //Checker = window.open("https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?chk="+Token+"&Row="+Row, "Checker", "width=400, height=200");
+  var CheckerURL = "https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?chk="+Token+"&Row="+Row;
+  Checker = window.open("", "Checker", "width=400, height=200");
+  if(Checker.location.href == "about:blank"){
+    Checker.location = CheckerURL;
+  }
   //var Obj = document.getElementById("HGTestVersion");
   //Obj.width = window.innerWidth;
   //Obj.height = window.innerHeight;
