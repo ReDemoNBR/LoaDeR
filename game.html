@@ -1,0 +1,31 @@
+<script>
+AlterOnLoad();
+
+function AlterOnLoad(){
+  PingController();
+}
+
+
+function PingController(){
+  window.opener.postMessage("Opening", "https://scripts.google.com");
+}
+
+
+function ReceiveMessage(e){
+  var origin = e.origin || e.originalEvent.origin;
+  console.log("Message received from: "+origin);
+  if(origin !== "https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev"){
+    console.log("Don't trust the sender... Ignore message");
+    return;
+  }
+  var message = e.data;
+  console.log("Message content: "+message);
+  if(message == "Close"){
+    window.opener.close();
+    window.close();
+  }
+}
+
+
+window.addEventListener("message", ReceiveMessage, false);
+</script>
