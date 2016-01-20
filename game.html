@@ -2,6 +2,7 @@
 window.onload = AlterOnLoad;
 //var GameWindow;
 //var SyncWindow;
+var Timeout = 0;
 
 function AlterOnLoad(){
   //SyncWindow = window.opener.SyncWindow;
@@ -17,6 +18,14 @@ function PingController(){
 
 function Console(){
   console.log("AutoMessage Hello!");
+}
+
+
+function Update(){
+  if(Timeout>=60000){
+    window.close();
+  }
+  else Timeout += 1000;
 }
 
 
@@ -37,9 +46,8 @@ function ReceiveMessage(e){
     if(Message.Command == "eval"){
       console.log("eval this: "+Message.Code);
       eval(Message.Code);
-      //if(Message.Purpose){
-      if(Message.Purpose){
-        return AlterOnLoad();
+      if(Message.SecondCode){
+        return eval(Message.SecondCode);
       }
       return;
     }
@@ -48,9 +56,13 @@ function ReceiveMessage(e){
     //return AlterOnLoad();
   }
   console.log("Message content: "+Message);
-  if(message == "Close"){
+  if(Message == "Close"){
     //CloseOpener();
     window.close();
+  }
+  if(Message == "Ping"){
+    Timeout = 0;
+    return;
   }
   /*if(message.indexOf("Launch ") == 0){
     document.write(message.replace("Launch "));
