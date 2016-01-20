@@ -28,18 +28,27 @@ function ReceiveMessage(e){
     console.log("Untrusted source... Message ignored");
     return;
   }
-  if(e.data.Message == "SyncWindow"){
-    Logger.log(e.data.Message);
-    SyncWindow = JSON.parse(ab2str(e.data.Content));
-    return AlterOnLoad();
+  var Message = e.data;
+  if(Message.Command){
+    Logger.log(Message.Command);
+    if(Message.Command == "eval"){
+      console.log("eval this: "+Message.Code);
+      eval(Message.Code);
+      if(Purpose){
+        return AlterOnLoad();
+      }
+      return;
+    }
+    return;
+    //SyncWindow = JSON.parse(ab2str(e.data.Content));
+    //return AlterOnLoad();
   }
-  var message = e.data;
   console.log("Message content: "+message);
   if(message == "Close"){
     //CloseOpener();
     window.close();
   }
-  /*if(message.indexOf("Launch ") == 0){
+  if(message.indexOf("Launch ") == 0){
     document.write(message.replace("Launch "));
     var obj = document.getElementById("HGTestVersion");
     obj.width = window.innerWidth;
