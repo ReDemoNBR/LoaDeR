@@ -24,8 +24,11 @@ function ReceiveMessage(e){
     CloseOpener();
     window.close();
   }
-  if(message.indexOf("Launch") == 0){
-    document.write(message.replace("Launch"));
+  if(message.indexOf("Launch ") == 0){
+    document.write(message.replace("Launch "));
+    var obj = document.getElementById("HGTestVersion");
+    obj.width = window.innerWidth;
+    obj.height = window.innerHeight;
   }
 }
 
