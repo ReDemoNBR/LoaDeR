@@ -4,13 +4,19 @@ AlterOnLoad();
 var SyncWindow;
 
 function AlterOnLoad(){
-  SyncWindow = window.opener.SyncWindow;
+  //SyncWindow = window.opener.SyncWindow;
   PingController();
 }
 
 
 function PingController(){
+  console.log("sending message: Opening");
   SyncWindow.postMessage("Opening", "https://n-td7fejzwmlqmheejrvhujrb7m4phyvsuihj5jqq-script.googleusercontent.com");
+}
+
+
+function Console(){
+  console.log("AutoMessage Hello!");
 }
 
 
