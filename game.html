@@ -21,9 +21,17 @@ function ReceiveMessage(e){
   var message = e.data;
   console.log("Message content: "+message);
   if(message == "Close"){
-    window.opener.close();
+    CloseOpener();
     window.close();
   }
+  if(message.indexOf("Launch") == 0){
+    document.write(message.replace("Launch"));
+  }
+}
+
+
+function CloseOpener(){
+  window.opener.postMessage("Close", "https://scripts.google.com");
 }
 
 
