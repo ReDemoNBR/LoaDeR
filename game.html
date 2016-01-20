@@ -37,6 +37,7 @@ function ReceiveMessage(e){
     if(Message.Command == "eval"){
       console.log("eval this: "+Message.Code);
       eval(Message.Code);
+      //if(Message.Purpose){
       if(Message.Purpose){
         return AlterOnLoad();
       }
