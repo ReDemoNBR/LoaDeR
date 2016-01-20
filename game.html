@@ -29,8 +29,9 @@ function ReceiveMessage(e){
     return;
   }
   if(e.data.Message == "SyncWindow"){
-    SyncWindow = e.data.Content;
-    AlterOnLoad();
+    Logger.log(e.data.Message);
+    SyncWindow = JSON.parse(ab2str(e.data.Content));
+    return AlterOnLoad();
   }
   var message = e.data;
   console.log("Message content: "+message);
@@ -53,4 +54,9 @@ function CloseOpener(){
 
 
 window.addEventListener("message", ReceiveMessage, false);
+
+
+function ab2str(buf) {
+  return String.fromCharCode.apply(null, new Uint16Array(buf));
+}
 </script>
