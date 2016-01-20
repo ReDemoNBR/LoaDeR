@@ -26,7 +26,7 @@ function AlterOnLoad(){
     }
     else console.log("Disappeared");
     console.log("Checker protocol = "+Checker.location.protocol);
-    Status();
+    //Status();
   }
   //var Obj = document.getElementById("HGTestVersion");
   //Obj.width = window.innerWidth;
@@ -35,12 +35,12 @@ function AlterOnLoad(){
 }
 
 
-function Status(){
+/*function Status(){
   console.log("checking status");
   if(Checker!="" && Checker.closed)
     CloseWindow();
   else setTimeout(Status, 30000);
-}
+}*/
 
 
 function ReceiveMessage(e){
