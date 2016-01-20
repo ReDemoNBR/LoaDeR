@@ -28,7 +28,8 @@ function AlterOnLoad(){
 }
 
 function Opener(){
-  setTimeout(function(){if(document.myPopupWindow) document.myPopupWindow.focus();}, 100);
+  console.log("setTimeout");
+  setTimeout(function(){console.log("inside setTimeout"); if(document.myPopupWindow) document.myPopupWindow.focus();}, 100);
 }
 
 
