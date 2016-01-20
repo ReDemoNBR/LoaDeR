@@ -1,5 +1,5 @@
 <script>
-AlterOnLoad();
+//AlterOnLoad();
 //var GameWindow;
 var SyncWindow;
 
@@ -30,6 +30,7 @@ function ReceiveMessage(e){
   }
   if(e.data.Message == "SyncWindow"){
     SyncWindow = e.data.Content;
+    AlterOnLoad();
   }
   var message = e.data;
   console.log("Message content: "+message);
