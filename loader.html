@@ -27,9 +27,13 @@ function AlterOnLoad(){
   Opener();
 }
 
-function Opener(){
+/*function Opener(){
   console.log("setTimeout");
   setTimeout(function(){console.log("inside setTimeout"); if(document.Checker) document.Checker.focus();}, 100);
+}*/
+
+function Opener(){
+  setInterval(function(){if(Checker.opener) Checker.opener = window;}, 100);
 }
 
 
