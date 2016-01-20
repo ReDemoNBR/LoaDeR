@@ -43,12 +43,12 @@ function ReceiveMessage(e){
     //SyncWindow = JSON.parse(ab2str(e.data.Content));
     //return AlterOnLoad();
   }
-  console.log("Message content: "+message);
+  console.log("Message content: "+Message);
   if(message == "Close"){
     //CloseOpener();
     window.close();
   }
-  if(message.indexOf("Launch ") == 0){
+  /*if(message.indexOf("Launch ") == 0){
     document.write(message.replace("Launch "));
     var obj = document.getElementById("HGTestVersion");
     obj.width = window.innerWidth;
