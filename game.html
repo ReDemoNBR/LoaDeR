@@ -14,7 +14,8 @@ function PingController(){
 function ReceiveMessage(e){
   var origin = e.origin || e.originalEvent.origin;
   console.log("Message received from: "+origin);
-  if(origin !== "https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev"){
+  //if(origin !== "https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev"){
+  if(origin !== "https://n-td7fejzwmlqmheejrvhujrb7m4phyvsuihj5jqq-script.googleusercontent.com"){
     console.log("Untrusted source... Message ignored");
     return;
   }
