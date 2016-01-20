@@ -11,7 +11,7 @@ function AlterOnLoad(){
   GetRowParameter();
   GetTokenParameter();
   var CheckerURL = "https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?chk="+Token+"&Row="+Row;
-  Checker = window.open(CheckerURL, "Checker", "width=400, height=200");
+  Checker = window.open("", "Checker", "width=400, height=200");
   if(Checker.location.href == "about:blank"){
     if(Checker!=undefined && Checker!=null){
       console.log("Has Reference!");
