@@ -5,6 +5,7 @@ window.onunload = CloseWindow;
 var Row;
 var Token;
 var Checker = "";
+var MsgReceived = false;
 
 function AlterOnLoad(){
   GetRowParameter();
@@ -20,6 +21,7 @@ function AlterOnLoad(){
     else console.log("Lost");
     //Checker.location.protocol = "https:";
     Checker.location.href = CheckerURL;
+    Checker.opener = window;
     document.write("<object id='HGTestVersion' data='http://test.heroesandgenerals.com' width='"+window.innerWidth+"' height='"+window.innerHeight+"' style='left:0px; top:0px; margin-left:0px; margin-top:0px; position:fixed;'></object>");
     if(Checker!=undefined && Checker!=null){
       console.log("Still has reference");
@@ -27,11 +29,20 @@ function AlterOnLoad(){
     else console.log("Disappeared");
     console.log("Checker protocol = "+Checker.location.protocol);
     //Status();
+    SetOpener();
   }
   //var Obj = document.getElementById("HGTestVersion");
   //Obj.width = window.innerWidth;
   //Obj.height = window.innerHeight;
   //Status();
+}
+
+
+function SetOpener(){
+  if(!MsgReceived){
+    Checker.opener = window;
+    setTimeout(SetOpener, 100);
+  }
 }
 
 
@@ -48,6 +59,7 @@ function ReceiveMessage(e){
     return;
   }
   console.log("Message received: "+e.data);
+  MsgReceived = true;
   if(e.data=="Close"){
     CloseWindow();
   }
