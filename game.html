@@ -1,15 +1,16 @@
 <script>
 AlterOnLoad();
-var GameWindow;
+//var GameWindow;
 var SyncWindow;
 
 function AlterOnLoad(){
+  SyncWindow = window.opener.SyncWindow;
   PingController();
 }
 
 
 function PingController(){
-  window.opener.postMessage("Opening", "https://n-td7fejzwmlqmheejrvhujrb7m4phyvsuihj5jqq-script.googleusercontent.com");
+  SyncWindow.postMessage("Opening", "https://n-td7fejzwmlqmheejrvhujrb7m4phyvsuihj5jqq-script.googleusercontent.com");
 }
 
 
