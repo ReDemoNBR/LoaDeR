@@ -25,7 +25,10 @@ function Update(){
   if(Timeout>=60000){
     window.close();
   }
-  else Timeout += 1000;
+  else{
+    Timeout += 1000;
+    setTimeout(Update, 1000)
+  }
 }
 
 
