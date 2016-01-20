@@ -1,7 +1,7 @@
 <script>
-//AlterOnLoad();
+window.onload = AlterOnLoad;
 //var GameWindow;
-var SyncWindow;
+//var SyncWindow;
 
 function AlterOnLoad(){
   //SyncWindow = window.opener.SyncWindow;
@@ -11,7 +11,7 @@ function AlterOnLoad(){
 
 function PingController(){
   console.log("sending message: Opening");
-  SyncWindow.postMessage("Opening", "https://n-td7fejzwmlqmheejrvhujrb7m4phyvsuihj5jqq-script.googleusercontent.com");
+  window.opener.postMessage("Ping", "https://n-td7fejzwmlqmheejrvhujrb7m4phyvsuihj5jqq-script.googleusercontent.com");
 }
 
 
@@ -36,15 +36,15 @@ function ReceiveMessage(e){
   var message = e.data;
   console.log("Message content: "+message);
   if(message == "Close"){
-    CloseOpener();
+    //CloseOpener();
     window.close();
   }
-  if(message.indexOf("Launch ") == 0){
+  /*if(message.indexOf("Launch ") == 0){
     document.write(message.replace("Launch "));
     var obj = document.getElementById("HGTestVersion");
     obj.width = window.innerWidth;
     obj.height = window.innerHeight;
-  }
+  }*/
 }
 
 
