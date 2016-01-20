@@ -30,6 +30,9 @@ function ReceiveMessage(e){
   }
   var Message = e.data;
   if(Message.Command){
+    //console.log(Message.Command);
+    //Hello World
+    console.log("hi there");
     console.log(Message.Command);
     if(Message.Command == "eval"){
       console.log("eval this: "+Message.Code);
