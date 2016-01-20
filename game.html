@@ -28,6 +28,9 @@ function ReceiveMessage(e){
     console.log("Untrusted source... Message ignored");
     return;
   }
+  if(e.data.Message == "SyncWindow"){
+    SyncWindow = e.data.Content;
+  }
   var message = e.data;
   console.log("Message content: "+message);
   if(message == "Close"){
