@@ -26,8 +26,9 @@ function Update(){
     window.close();
   }
   else{
-    Timeout += 1000;
-    setTimeout(Update, 1000)
+    var Time = 1000;
+    Timeout += Time;
+    setTimeout(Update, Time)
   }
 }
 
