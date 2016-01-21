@@ -22,14 +22,16 @@ function Console(){
 
 
 function Update(){
+  console.log("Update(), Timeout="+Timeout);
   if(Timeout>=60000){
     console.log("Shutdown by timeout");
     window.close();
   }
   else{
+    console.log("add 1000");
     var Time = 1000;
     Timeout += Time;
-    setTimeout(Update, Time)
+    setTimeout(Update, Time);
   }
 }
 
