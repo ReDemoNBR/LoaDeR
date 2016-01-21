@@ -1,11 +1,8 @@
 <script>
 window.onload = AlterOnLoad;
-//var GameWindow;
-//var SyncWindow;
 var Timeout = 0;
 
 function AlterOnLoad(){
-  //SyncWindow = window.opener.SyncWindow;
   PingController();
 }
 
@@ -22,8 +19,8 @@ function Console(){
 
 
 function Update(){
-  console.log("Update(), Timeout="+(Timeout/1000)+"s");
-  if(Timeout>=60000){
+  console.log("Timeout in "+(30-Timeout/1000)+"s");
+  if(Timeout>=30000){
     console.log("Shutdown by timeout");
     window.close();
   }
@@ -38,20 +35,13 @@ function Update(){
 
 function ReceiveMessage(e){
   var origin = e.origin || e.originalEvent.origin;
-  console.log("Message received from: "+origin);
-  //if(origin !== "https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev"){
   if(origin !== "https://n-td7fejzwmlqmheejrvhujrb7m4phyvsuihj5jqq-script.googleusercontent.com"){
-    console.log("Untrusted source... Message ignored");
+    console.log("Message from bad source ignored");
     return;
   }
   var Message = e.data;
   if(Message.Command){
-    //console.log(Message.Command);
-    //Hello World
-    console.log("hi there");
-    console.log(Message.Command);
     if(Message.Command == "eval"){
-      console.log("eval this: "+Message.Code);
       eval(Message.Code);
       if(Message.SecondCode){
         return eval(Message.SecondCode);
@@ -59,36 +49,17 @@ function ReceiveMessage(e){
       return;
     }
     return;
-    //SyncWindow = JSON.parse(ab2str(e.data.Content));
-    //return AlterOnLoad();
   }
   console.log("Message content: "+Message);
   if(Message == "Close"){
-    //CloseOpener();
     window.close();
   }
   if(Message == "Ping"){
     Timeout = 0;
     return;
   }
-  /*if(message.indexOf("Launch ") == 0){
-    document.write(message.replace("Launch "));
-    var obj = document.getElementById("HGTestVersion");
-    obj.width = window.innerWidth;
-    obj.height = window.innerHeight;
-  }*/
 }
 
 
-/*function CloseOpener(){
-  window.opener.postMessage("Close", "https://n-td7fejzwmlqmheejrvhujrb7m4phyvsuihj5jqq-script.googleusercontent.com");
-}*/
-
-
 window.addEventListener("message", ReceiveMessage, false);
-
-
-/*function ab2str(buf) {
-  return String.fromCharCode.apply(null, new Uint16Array(buf));
-}*/
 </script>
