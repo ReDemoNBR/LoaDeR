@@ -22,7 +22,7 @@ function Console(){
 
 
 function Update(){
-  console.log("Update(), Timeout="+Timeout);
+  console.log("Update(), Timeout="+(Timeout/1000)+"s");
   if(Timeout>=60000){
     console.log("Shutdown by timeout");
     window.close();
