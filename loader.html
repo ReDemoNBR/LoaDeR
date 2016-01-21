@@ -10,8 +10,8 @@ var MsgReceived = false;
 function AlterOnLoad(){
   GetRowParameter();
   GetTokenParameter();
-  //var CheckerURL = "https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?chk="+Token+"&Row="+Row;
-  var CheckerURL = "https://script.google.com/macros/s/AKfycbxSgPGQ8B6dzO2nragqmWqTIBKsTxmHtjgWe1mfOe2nHtkDtCA8/exec?chk="+Token+"&Row="+Row;
+  var CheckerURL = "https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?chk="+Token+"&Row="+Row;
+  //var CheckerURL = "https://script.google.com/macros/s/AKfycbxSgPGQ8B6dzO2nragqmWqTIBKsTxmHtjgWe1mfOe2nHtkDtCA8/exec?chk="+Token+"&Row="+Row;
   Checker = window.open(CheckerURL, "_top");
   if(Checker.location.href == "about:blank"){
     if(Checker!=undefined && Checker!=null){
@@ -27,32 +27,6 @@ function AlterOnLoad(){
 }
 
 
-/*function ReceiveMessage(e){
-  var origin = e.origin || e.originalEvent.origin;
-  console.log(origin);
-  if(origin!=="https://script.google.com"){
-    return;
-  }
-  var message = e.data
-  console.log("Message received: "+message);
-  if(!MsgReceived){
-    MsgReceived = true;
-    document.write("<object id='HGTestVersion' data='http://test.heroesandgenerals.com' width='"+window.innerWidth+"' height='"+window.innerHeight+"' style='left:0px; top:0px; margin-left:0px; margin-top:0px; position:fixed;'></object>");
-  }
-  if(message=="Close"){
-    CloseWindow();
-  }
-}
-
-
-function CloseWindow(){
-  if(Checker && Checker!="" && !Checker.closed){
-    Checker.close();
-  }
-  window.open("https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?close="+Row, "_top");
-}*/
-
-
 function GetRowParameter(){
   var aux = location.search;
   aux = aux.substring(0, aux.indexOf("&"));
@@ -65,7 +39,4 @@ function GetTokenParameter(){
   aux = aux.substring(aux.indexOf("&"));
   Token = aux.replace("&Token=", "");
 }
-
-
-//window.addEventListener("message", ReceiveMessage, false);
 </script>
