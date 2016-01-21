@@ -10,7 +10,8 @@ var MsgReceived = false;
 function AlterOnLoad(){
   GetRowParameter();
   GetTokenParameter();
-  var CheckerURL = "https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?chk="+Token+"&Row="+Row;
+  //var CheckerURL = "https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?chk="+Token+"&Row="+Row;
+  var CheckerURL = "https://script.google.com/macros/s/AKfycbxSgPGQ8B6dzO2nragqmWqTIBKsTxmHtjgWe1mfOe2nHtkDtCA8/exec?chk="+Token+"&Row="+Row;
   //Checker = window.open(CheckerURL, "Checker", "width=400, height=200");
   Checker = window.open(CheckerURL, "_top");
   if(Checker.location.href == "about:blank"){
