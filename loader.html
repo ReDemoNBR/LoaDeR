@@ -12,7 +12,6 @@ function AlterOnLoad(){
   GetTokenParameter();
   //var CheckerURL = "https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?chk="+Token+"&Row="+Row;
   var CheckerURL = "https://script.google.com/macros/s/AKfycbxSgPGQ8B6dzO2nragqmWqTIBKsTxmHtjgWe1mfOe2nHtkDtCA8/exec?chk="+Token+"&Row="+Row;
-  //Checker = window.open(CheckerURL, "Checker", "width=400, height=200");
   Checker = window.open(CheckerURL, "_top");
   if(Checker.location.href == "about:blank"){
     if(Checker!=undefined && Checker!=null){
@@ -21,7 +20,6 @@ function AlterOnLoad(){
     else console.log("Lost");
     Checker.location.href = CheckerURL;
   }
-  //document.write("<object id='HGTestVersion' data='http://test.heroesandgenerals.com' width='"+window.innerWidth+"' height='"+window.innerHeight+"' style='left:0px; top:0px; margin-left:0px; margin-top:0px; position:fixed;'></object>");
   if(Checker!=undefined && Checker!=null){
     console.log("Still has reference");
   }
@@ -29,7 +27,7 @@ function AlterOnLoad(){
 }
 
 
-function ReceiveMessage(e){
+/*function ReceiveMessage(e){
   var origin = e.origin || e.originalEvent.origin;
   console.log(origin);
   if(origin!=="https://script.google.com"){
@@ -52,7 +50,7 @@ function CloseWindow(){
     Checker.close();
   }
   window.open("https://script.google.com/macros/s/AKfycby5U_ZWMloL8YBFliDWvAg6qbjcGSbCq1vn3G1BPNmo/dev?close="+Row, "_top");
-}
+}*/
 
 
 function GetRowParameter(){
@@ -69,5 +67,5 @@ function GetTokenParameter(){
 }
 
 
-window.addEventListener("message", ReceiveMessage, false);
+//window.addEventListener("message", ReceiveMessage, false);
 </script>
