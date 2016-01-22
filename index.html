@@ -82,6 +82,7 @@ function GetGeoLocError(Error){
 function SendInfo(){
   var Timestamp = Credentials.Timestamp.replace(/ /g, "BLSP").replace(/\//g, "SLSH").replace(/:/g, "CLN");
   var TimeZone = Credentials.TimeZone.replace(/:/g, "CLN");
+  Credentials.IP = myip;
   var QueryString = "?validate="+Timestamp+";"+Credentials.IP+";"+TimeZone+";"+Credentials.Browser.Name+";"+Credentials.Browser.Language+";"+Credentials.GeoLoc.Latitude+";"+Credentials.GeoLoc.Longitude+";"+Credentials.GeoLoc.Accuracy;
   var CredentialWindow = window.open(CredentialLink+QueryString, "_top");
 }
